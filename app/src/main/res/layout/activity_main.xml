@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolBarBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DBDBDB"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/newPage"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:onClick="reset"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/reset"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/smallBrush"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:scaleType="centerCrop"
+            android:padding="5dp"
+            android:background="@drawable/rectangle_border"
+            android:src="@drawable/brush"
+            android:onClick="setBrushSize"
+            app:layout_constraintBottom_toBottomOf="@+id/mediumBrush"
+            app:layout_constraintStart_toEndOf="@+id/newPage"
+            app:layout_constraintTop_toTopOf="@+id/mediumBrush"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/mediumBrush"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
+            android:padding="5dp"
+            android:src="@drawable/brush"
+            android:onClick="setBrushSize"
+            app:layout_constraintBottom_toBottomOf="@+id/largeBrush"
+            app:layout_constraintStart_toEndOf="@+id/smallBrush"
+            app:layout_constraintTop_toTopOf="@+id/largeBrush"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/largeBrush"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/brush"
+            android:onClick="setBrushSize"
+            app:layout_constraintBottom_toBottomOf="@+id/newPage"
+            app:layout_constraintStart_toEndOf="@+id/mediumBrush"
+            app:layout_constraintTop_toTopOf="@+id/newPage" />
+
+
+        <ImageView
+            android:id="@+id/eraser"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="5dp"
+            android:layout_marginStart="24dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/eraser_black"
+            android:onClick="setBrushSize"
+            app:layout_constraintBottom_toBottomOf="@+id/newPage"
+            app:layout_constraintStart_toEndOf="@+id/largeBrush"
+            app:layout_constraintTop_toTopOf="@+id/newPage"
+            android:tag="#FFFFFFFF"
+            />
+
+        <ImageView
+            android:id="@+id/save"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/save_black"
+            android:onClick="saveToGallery"
+            app:layout_constraintBottom_toBottomOf="@+id/newPage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/largeBrush"
+            app:layout_constraintTop_toTopOf="@+id/newPage" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.ravinta.tarspaintapp.WhiteBoard
+        android:id="@+id/paintView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/colorPallet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBarBackground" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/colorPallet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:background="#DBDBDB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/color_circle_selected"
+            android:backgroundTint="@color/black"
+            android:backgroundTintMode="add"
+            android:onClick="setBrushColor"
+            android:tag="#FF000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#FFFF0000"
+            android:backgroundTintMode="add"
+            android:tag="#FFFF0000"
+            android:onClick="setBrushColor"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/view" />
+        <View
+            android:id="@+id/view3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTintMode="add"
+            android:backgroundTint="#FFFF6F00"
+            android:tag="#FFFF6F00"
+            android:onClick="setBrushColor"
+            app:layout_constraintBottom_toBottomOf="@+id/view2"
+            app:layout_constraintStart_toEndOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="@+id/view2" />
+        <View
+        android:id="@+id/view4"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/color_circle"
+            android:backgroundTintMode="add"
+        android:backgroundTint="#EEFF00"
+        android:tag="#FFEEFF00"
+            android:onClick="setBrushColor"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintStart_toEndOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="@+id/view3" />
+        <View
+            android:id="@+id/view5"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTintMode="add"
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#FF0088"
+            android:tag="#FFFF0088"
+            android:onClick="setBrushColor"
+
+            app:layout_constraintBottom_toBottomOf="@+id/view4"
+            app:layout_constraintStart_toEndOf="@+id/view4"
+            app:layout_constraintTop_toTopOf="@+id/view4"
+             />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#00FF09"
+            android:backgroundTintMode="add"
+            android:tag="#FF00FF09"
+            android:onClick="setBrushColor"
+            app:layout_constraintBottom_toBottomOf="@+id/view5"
+            app:layout_constraintStart_toEndOf="@+id/view5"
+            app:layout_constraintTop_toTopOf="@+id/view5"
+
+            app:layout_constraintVertical_bias="0.666" />
+        <View
+            android:id="@+id/view7"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#00FFD4"
+            android:backgroundTintMode="add"
+            android:tag="#FF00FFD4"
+            android:onClick="setBrushColor"
+            app:layout_constraintBottom_toBottomOf="@+id/view6"
+            app:layout_constraintStart_toEndOf="@+id/view6"
+            app:layout_constraintTop_toTopOf="@+id/view6"
+            app:layout_constraintVertical_bias="0.666" />
+        <View
+            android:id="@+id/view8"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTint=" #0033FF"
+            android:backgroundTintMode="add"
+            android:tag="#FF0033FF"
+            android:onClick="setBrushColor"
+            app:layout_constraintBottom_toBottomOf="@+id/view7"
+            app:layout_constraintStart_toEndOf="@+id/view7"
+            app:layout_constraintTop_toTopOf="@+id/view7"
+            app:layout_constraintVertical_bias="0.666" />
+
+        <View
+            android:id="@+id/view9"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#BD00FF "
+            android:backgroundTintMode="add"
+            android:onClick="setBrushColor"
+            android:tag="#FFBD00FF"
+            app:layout_constraintBottom_toBottomOf="@+id/view7"
+            app:layout_constraintStart_toEndOf="@+id/view8"
+            app:layout_constraintTop_toTopOf="@+id/view7" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
